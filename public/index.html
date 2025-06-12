@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Savate:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .box {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+      }
+      .box > div {
+        max-width: 600px;
+      }
+      h1,
+      h2 {
+        font-family: Lato;
+        font-weight: 900;
+        color: #666;
+      }
+      div {
+        font-family: Lato;
+        font-size: 16px;
+      }
+      .results {
+        font-size: 20px;
+      }
+      .disabled {
+        color: #aaa;
+      }
+      .swash {
+        width: 100px;
+        height: 100px;
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Colorimeter</h1>
+
+    <div>
+      Rendering strategy:
+      <select id="rendering">
+        <option value="geometricPrecision">Geometric Precision</option>
+        <option value="optimizeSpeed">Optimize Speed</option>
+        <option value="optimizeLegibility">Optimize Legibility</option>
+        <option value="auto">Auto</option>
+      </select>
+      <span id="blurspan">
+        Blur (SLOW!):
+        <input type="number" id="blur" value="0" min="0" max="10" step="1" />
+      </span>
+    </div>
+    <div class="box" id="experiments"></div>
+
+    <div class="box">
+      <div style="width: 600px" id="rampholder"></div>
+      <div style="width: 50%"><canvas id="rampchart"></canvas></div>
+    </div>
+
+    <script src="../src/index.ts"></script>
+  </body>
+</html>
