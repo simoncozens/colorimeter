@@ -31,7 +31,9 @@ function setupCanvas(
     //   let blur = 1;
     context!.filter = `blur(${blur}px)`;
   }
-  context!.textRendering = $("#rendering")!.val() as CanvasTextRendering;
+  (context! as any).textRendering = $(
+    "#rendering"
+  )!.val() as CanvasTextRendering; // Out of date typescript types
   context!.font = `${weight} ${typesize}pt Savate`;
   // Clear the canvas white
   context!.fillStyle = "white";
