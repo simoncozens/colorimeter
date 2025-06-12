@@ -177,7 +177,7 @@ $(() => {
     setTimeout(runExperiments, 1);
   });
 
-  const fonts = ["Lato", "Savate", "sans-serif", "serif"];
+  const fonts = ["Lato", "Savate", "Merriweather", "sans-serif", "serif"];
   let chain: Promise<any> = Promise.resolve();
   for (const font of fonts) {
     $("#font").append(`<option value="${font}">${font}</option>`);
