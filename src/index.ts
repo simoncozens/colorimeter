@@ -181,5 +181,5 @@ $(() => {
     setTimeout(runExperiments, 1);
   });
 
-  runExperiments();
+  document.fonts.ready.then(runExperiments);
 });
