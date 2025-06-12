@@ -34,7 +34,7 @@ function setupCanvas(
   (context! as any).textRendering = $(
     "#rendering"
   )!.val() as CanvasTextRendering; // Out of date typescript types
-  context!.font = `${weight} ${typesize}pt Savate`;
+  context!.font = `${weight} ${typesize}pt ` + $("#font")!.val();
   // Clear the canvas white
   context!.fillStyle = "white";
   context!.fillRect(0, 0, canvas.width()!, canvas.height()!);
@@ -176,10 +176,22 @@ $(() => {
     ($("#blur") as JQuery<HTMLInputElement>).prop("disabled", true);
     ($("#rendering") as JQuery<HTMLInputElement>).prop("disabled", true);
   }
-  $("#blur, #rendering").on("change", () => {
+  $("#blur, #rendering, #font").on("change", () => {
     console.log("Redrawing canvases with new settings");
     setTimeout(runExperiments, 1);
   });
+  const fonts = ["Lato", "Savate", "sans-serif", "serif"];
+  let chain: Promise<any> = Promise.resolve();
+  for (const font of fonts) {
+    $("#font").append(`<option value="${font}">${font}</option>`);
+    chain = chain.then(() => {
+      return document.fonts.load(`36px ${font}`);
+    });
+  }
 
-  document.fonts.ready.then(runExperiments);
+  chain.then(() => {
+    console.log(document.fonts.check("bold 36pt Lato"));
+    console.log("Fonts are ready, running experiments");
+    setTimeout(runExperiments, 1);
+  });
 });
